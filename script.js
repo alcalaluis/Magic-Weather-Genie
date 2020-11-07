@@ -1,13 +1,12 @@
+$(document).ready(function(){
+
+
 var cities = [""];
 
 
 $("#find-weather").on("click", function (event) {
 
     event.preventDefault();
-
-    var city = $("#city-input").val().trim().
-    cities.push(city);
-
 
     function displayWeather() {
         var cityName = $("#city-input").val();
@@ -18,14 +17,24 @@ $("#find-weather").on("click", function (event) {
             url: queryUrl,
             method: "GET"
         }).then(function (response) {
+            console.log(queryUrl);
+            console.log(response);
+
 
             var card = $("#current-city").text(cityName);
 
             var temp = response.list.main.temp;
-
             var tempItem = $("#temp").text("Temp:" + temp);
-
             card.append(tempItem);
+
+            var humid = response.list.main.humidity;
+            var humItem = $("#humidity").text("Humidity:" + humid);
+            card.append(humItem);
+
+            var windFast = response.list.wind.speed;
+            var windItem = $("#wind-speed").text("Wind Speed:" + windFast);
+            card.append(windItem);
+
 
 
         });
@@ -42,9 +51,21 @@ function renderCities() {
         cityEl.text(cities[i]);
         $("#city-list").append(cityEl);
     }
-}
+};
+
+
+
+
+$("#find-weather").on("click", function (event) {
+    event.preventDefault();
+    var city = $("#city-input").val().trim().
+        cities.push(city);
+    renderCities();
+});
+
 
 
 $(document).on("click", ".city-list");
 
 renderCities();
+});
