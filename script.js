@@ -1,7 +1,7 @@
-$("#find-weather").on("click", function(event){
+$("#find-weather").on("click", function (event) {
 
     event.preventDefault();
-    
+
     var cityName = $("#city-input").val();
     var apiKey = "e411b7dc1e32be877fc4d36a692e8e12";
     var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?appid=e411b7dc1e32be877fc4d36a692e8e12&q=" + cityName + "&units=imperial";
@@ -16,3 +16,16 @@ $("#find-weather").on("click", function(event){
     });
 
 });
+
+var cities = [""];
+
+function renderCities() {
+    for (var i = 0; i < cities.length; i++) {
+        var city = $("<button>");
+        city.addClass("city")
+        city.attr("data-name", cities[i]);
+        city.text(cities[i]);
+        $("#city-list").append(city);
+    }
+}
+
