@@ -1,0 +1,21 @@
+.head {
+background-color: #33ccff;
+color: white;
+text-align: center;
+padding: 10px;
+}
+
+.search{
+    margin-left: -145px;
+}
+
+.card {
+    float: right;
+    margin-top: -200px;
+}
+
+.card-list{
+    text-align: left;
+}
+
+
